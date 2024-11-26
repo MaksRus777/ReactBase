@@ -50,7 +50,9 @@ main .user{
 .edit-icon:hover,.delete-icon:hover{
     opacity:0.5;
 }
-aside form textarea, aside form input:not([type='checkbox']), aside form button{
+form textarea, 
+form input:not([type='checkbox']),
+form button{
     width:90%;
     padding: 15px 5%;
     font-family: "Montserrat", sans-serif;
@@ -62,18 +64,28 @@ aside form textarea, aside form input:not([type='checkbox']), aside form button{
     outline:none;
     font-size: 15px;
 }
-aside form input [type='checkbox'] {
+form input [type='checkbox'] {
     margin:10px;
 }
 
-aside form button{
+form button{
     width: 100%;
     cursor: pointer;
-    transition: transform 500ms ease;
+    transition: transform 250ms ease;
 
 }
 
-aside form button:hover {
-    transform: scale(1.1);
+form button:hover {
+    transform: scale(1.01);
+
+}
+.user form{
+    margin-top:20px;
+
+}
+.user form input,
+.user form textarea,
+.user form button{
+    background: #134b57;
 
 }

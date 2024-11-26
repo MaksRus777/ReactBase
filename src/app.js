@@ -28,6 +28,8 @@ class App extends React.Component {
         }
         this.addUser = this.addUser.bind(this)
         this.deleteUser = this.deleteUser.bind(this)
+        this.editUser = this.editUser.bind(this)
+
 
     }
 
@@ -36,7 +38,7 @@ class App extends React.Component {
     <div>
         <Header name="Шапка профиля"/> 
         <main>
-            <Users users={this.state.users} onDelete={this.deleteUser}/>  {/* мы передаем метод onDelete со значением deleteUser в компонент User,которое является функцией */}
+            <Users users={this.state.users} onEdit={this.editUser} onDelete={this.deleteUser}/>  {/* мы передаем метод onDelete со значением deleteUser в компонент User,которое является функцией */}
         </main>     
         <aside>
             <AddUser onAdd={this.addUser}/>
@@ -50,6 +52,19 @@ class App extends React.Component {
         this.setState({
             users: this.state.users.filter((el)=> el.id !== id)
         })
+    }
+
+    
+    /*editUser передается вместе с addUser пошагово через компоненты в компонент  addUser по нахванию onAdd, таким образом одно нажатие
+    на кнопку "добавить"  реализует сразу два созданых мной метода*, это и есть props*/
+    editUser(user){
+        let allUsers = this.state.users /*получили всех пользователей*/
+        allUsers[user.id - 1]=user /*нашли нужного пользователя и сохранили в allUsers*/ 
+
+        this.setState({users:[]}/*удаляем пользователей*/ ,/* функция будет выполнена после 
+            выполнения предидущего кусочка кода*/() => {
+                this.setState({users:[...allUsers]}) /*замена состояния обновленным allUsers*/
+            } )
     }
     addUser(user){
         const id = this.state.users.length + 1
